@@ -1,0 +1,11 @@
+# Secrets — never commit real values. See .env.example for the template.
+.env
+.env.*
+!.env.example
+
+# QuickBooks token cache (rotating refresh token, written on every run)
+*.token.json
+.qbo/
+
+# OS cruft
+.DS_Store

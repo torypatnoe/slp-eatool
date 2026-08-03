@@ -7,9 +7,9 @@
 
 ## The Customer
 
-The **SLP Bookkeeping team** — the bookkeepers responsible for keeping the books for the **East Angles Association**. They own the monthly close and the reporting that comes out of it, and they work primarily inside **QuickBooks**.
+The **SLP Bookkeeping team** — the bookkeepers responsible for keeping the books for the **East Angles Foundation**. They own the monthly close and the reporting that comes out of it, and they work primarily inside **QuickBooks**.
 
-Their day is shaped by getting data *into* and *out of* **QuickBooks Online**: transactions from the systems the Association actually uses (starting with **Stripe**) have to land in QuickBooks accurately, and reports have to come back out. Today that movement is done by hand.
+Their day is shaped by getting data *into* and *out of* **QuickBooks Online**: transactions from the systems the Foundation actually uses (starting with **Stripe**) have to land in QuickBooks accurately, and reports have to come back out. Today that movement is done by hand.
 
 ---
 
@@ -23,7 +23,7 @@ Closing the month and producing reports depends on data that lives outside Quick
 2. **Massage** the exported data into the format QuickBooks Online expects.
 3. **Import** the formatted data into QuickBooks Online.
 
-Step 2 — reshaping ~1,000 rows by hand into the right format — is the most repetitive and error-prone step, and it is the first automation target. Steps 1 and 3 stay manual for now; automating them (via the Stripe and QuickBooks APIs) is later work.
+Steps 2 and 3 — reshaping ~1,000 rows by hand and then importing them — are the most repetitive and error-prone, and together they are the first automation target. Step 1 (the Stripe export) stays manual for now; automating it via the Stripe API is later work.
 
 *(The step-by-step massaging rules and the reports the close must produce will be confirmed by working through the real workflow with the SLP Bookkeeping team — see [research/current-state.md](../research/current-state.md).)*
 
@@ -31,10 +31,9 @@ Step 2 — reshaping ~1,000 rows by hand into the right format — is the most r
 
 ## What the Customer Can Do After slp-eatool Exists
 
-- **Move Stripe data into QuickBooks without doing it by hand.** The export-reshape-import cycle for Stripe becomes an automated workflow, so the monthly Stripe reconciliation is a check, not a data-entry task.
+- **Move Stripe data into QuickBooks without doing it by hand.** The export-reshape-import cycle for Stripe becomes an automated workflow, so the monthly Stripe reconciliation is a check, not a data-entry task. The idea is a command-line tool — `./slp-eatool export.xlsx` — that reshapes the Stripe export and writes the transactions into QuickBooks Online directly.
 - **Close the month faster and with fewer errors.** The manual steps that today introduce mistakes are automated, so the close is more reliable and repeatable.
 - **Extend the same pattern to the next system.** Stripe is the first workflow; the tool is built so the next source of import/export data follows the same automated path rather than another hand-built process.
-- **Generate the reports the close produces with less manual effort.** Getting data out of QuickBooks for reporting is part of the same automated flow, not a separate manual export.
 
 ---
 
@@ -42,8 +41,10 @@ Step 2 — reshaping ~1,000 rows by hand into the right format — is the most r
 
 - **We are not replacing QuickBooks.** QuickBooks stays the system of record. `slp-eatool` moves data in and out of it; it does not become the ledger.
 - **We are not doing the bookkeeping judgement.** Categorisation rules, chart-of-accounts decisions, and sign-off remain the bookkeeper's job. The tool automates the mechanical data movement, not the accounting decisions.
-- **We are not a general-purpose integration platform.** This is built for SLP Bookkeeping's workflow for the East Angles Association, starting with Stripe — not a configurable connector for arbitrary systems.
+- **We are not a general-purpose integration platform.** This is built for SLP Bookkeeping's workflow for the East Angles Foundation, starting with Stripe — not a configurable connector for arbitrary systems.
 - **We are not (yet) automating every source system.** Stripe is the first workflow. Other sources come later, informed by the first.
+- **We are not (yet) generating the reports the close produces with less manual effort.** Getting data out of QuickBooks for reporting is part of the same automated flow, not a separate manual export.
+
 
 ---
 

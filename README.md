@@ -4,7 +4,7 @@
 
 ## Status
 
-**Cycle 1 opening.** `slp-eatool` is an automation tool for **SLP Bookkeeping** that automates moving data in and out of **QuickBooks Online** for the **East Angles Association**'s monthly close — starting with the **Stripe → QuickBooks** workflow. Cycle 1 automates the "massaging" step (reshaping the Stripe Excel export into the QuickBooks import format, ~1,000 txns/month); the export and import steps stay manual until later cycles. Next: capture the exact massaging rules, then write the Spec.
+**Cycle 1 — restarted 2026-08-03, Spec updated.** `slp-eatool` is an automation tool for **SLP Bookkeeping** that automates moving data in and out of **QuickBooks Online** for the **East Angles Foundation**'s monthly close — starting with the **Stripe → QuickBooks** workflow. Cycle 1's committed core is now a **direct import into QuickBooks Online via the Accounting API** (OAuth 2.0, sandbox-first): a dependency-free **Go** command-line binary reads the monthly Stripe Excel export (~1,000 txns), applies the massaging/derivation logic in memory, and writes the transactions straight into QuickBooks — **replacing the incumbent SaasAnt tool** (build-vs-buy resolved to build) *and* the manual import step. File output survives as a secondary `--file` dry-run/audit mode. Next: validate the entity mapping against a real Stripe export and capture the chart-of-accounts mapping.
 
 **DRI:** Tory Patnoe
 

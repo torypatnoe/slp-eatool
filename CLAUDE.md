@@ -4,7 +4,7 @@
 
 `slp-eatool` is a project managed under the **Forma** program-management methodology. The rules, workflow, and file conventions come from [`../forma-program-management`](../forma-program-management) — that repo is the source of truth for *how* we work; this repo applies that method to *this* project.
 
-> **Idea (gate passed):** `slp-eatool` is an automation tool for **SLP Bookkeeping** that automates the recurring bookkeeping workflows for the **East Angles Association**. See [`project/idea.md`](project/idea.md).
+> **Idea (gate passed):** `slp-eatool` is an automation tool for **SLP Bookkeeping** that automates the recurring bookkeeping workflows for the **East Angles Foundation**. See [`project/idea.md`](project/idea.md).
 
 **DRI:** Tory Patnoe
 
@@ -72,9 +72,12 @@ cycles/            — one flat file per cycle: cycle-N.md
 - **Customer Narrative** — `project/customer-narrative.md`; core parameters confirmed (QuickBooks Online, three-step Stripe process, ~1,000 txns/month). Reports and roadmap still to confirm with SLP
 - **Project** — `project/project.md`; milestone map with the massaging automation as M1
 - **Shape** — `project/shape.md`; Cycle 1 slice = automate step 2 (massaging)
-- **Cycle 1 opened** — `cycles/cycle-1.md` Bet written (appetite provisional; massaging rules pending)
+- **Build-vs-buy resolved → build (Option B)** — SaasAnt removed from the loop; `research/saasant-incumbent-tool.md`
+- **QuickBooks import researched** — `research/qb-research.md`; no CSV import API, so direct import = Accounting API + OAuth 2.0
+- **Cycle 1 restarted (2026-08-03)** — direct QuickBooks API import promoted from optional stretch to Cycle 1's **committed core** (pulls M3 forward); appetite now Large. Entity representation and initial derivation rules captured: SalesReceipt (sale) + JournalEntry (fee) + Deposit (payout); refunds sign-flipped; categories mapped from Stripe to QuickBooks. `cycles/cycle-1.md`, `project/shape.md`, `project/spec.md` updated to match — file output demoted to a secondary `--file` dry-run/audit mode; default path now needs QuickBooks OAuth credentials.
 
 ### Next Steps
-1. Capture the exact massaging rules — column mapping/transforms from a real Stripe export to the QuickBooks Online import format — into `cycles/cycle-1.md`, then confirm the Cycle 1 appetite
-2. Write `project/spec.md` (acceptance criteria, success metric) from those rules
-3. Interview SLP Bookkeeping on what a "done" monthly close and its reports require (narrative open questions #4, #5)
+1. Get a real Stripe Excel export + a known-good hand-produced result to validate the SalesReceipt + JournalEntry + Deposit combination line-by-line
+2. Capture the full Stripe-category → QuickBooks-account mapping from SLP's chart of accounts, and confirm the refund entity type (reversing JournalEntry / CreditMemo / negative SalesReceipt line)
+3. Register the QuickBooks app (client id/secret) and set up sandbox-company OAuth consent to start Build
+4. Interview SLP Bookkeeping on what a "done" monthly close and its reports require (narrative open questions #4, #5)
